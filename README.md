@@ -19,11 +19,11 @@
 | ------------------ | ---------- | ------------------------------ |
 | item_name          | string     | null: false                    |
 | detail             | text       | null: false                    |
-| category           | integer    | null: false                    |
-| condition          | integer    | null: false                    |
-| postage            | integer    | null: false                    |
-| area               | integer    | null: false                    |
-| delivery_time      | integer    | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| postage_id         | integer    | null: false                    |
+| area_id            | integer    | null: false                    |
+| delivery_time_id   | integer    | null: false                    |
 | price              | integer    | null: false                    |
 | user               | references | null: false, foreign_key: true |
 
@@ -34,8 +34,6 @@
 ## records テーブル
 | Column    | Type       | Options                        |
 | --------- | ---------- | ------------------------------ |
-| name      | string     | null: false                    |
-| item_name | string     | null: false                    |
 | user      | references | null: false, foreign_key: true |
 | item      | references | null: false, foreign_key: true |
 
@@ -48,12 +46,11 @@
 | Column             | Type       | Options                        |
 | ------------------ | ---------- | ------------------------------ |
 | postal_code        | string     | null: false                    |
-| prefecture         | text       | null: false                    |
+| area_id            | integer    | null: false                    |
 | municipality       | integer    | null: false                    |
 | street_number      | integer    | null: false                    |
-| building_name      | integer    | null: false                    |
+| building_name      | integer    |                                |
 | telephone_number   | integer    | null: false                    |
-| delivery_time      | integer    | null: false                    |
 | record             | references | null: false, foreign_key: true |
 
 ### association
