@@ -47,12 +47,12 @@
 | ------------------ | ---------- | ------------------------------ |
 | postal_code        | string     | null: false                    |
 | area_id            | integer    | null: false                    |
-| municipality       | integer    | null: false                    |
-| street_number      | integer    | null: false                    |
-| building_name      | integer    |                                |
-| telephone_number   | integer    | null: false                    |
+| municipality       | string     | null: false                    |
+| street_number      | string     | null: false                    |
+| building_name      | string     |                                |
+| telephone_number   | string     | null: false                    |
 | record             | references | null: false, foreign_key: true |
 
 ### association
-- belongs_to :address
+- belongs_to :record
 
