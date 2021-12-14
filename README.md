@@ -1,24 +1,58 @@
-# README
+## Users テーブル
+| Column             | Type   | Options                  |
+| ------------------ | ------ | -----------------------  |
+| email              | string | null: false, unique:true |
+| encrypted_password | string | null: false              |
+| nickname           | string | null: false              |
+| first_name         | string | null: false              |
+| last_name          | string | null: false              |
+| kana_first_name    | string | null: false              |
+| kana_last_name     | string | null: false              |
+| birthday           | date   | null: false              |
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### association
+- has_many :items
+- has_many :records
 
-Things you may want to cover:
+## items テーブル
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| item_name          | string     | null: false                    |
+| detail             | text       | null: false                    |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| postage_id         | integer    | null: false                    |
+| area_id            | integer    | null: false                    |
+| delivery_time_id   | integer    | null: false                    |
+| price              | integer    | null: false                    |
+| user               | references | null: false, foreign_key: true |
 
-* Ruby version
+### association
+- belongs_to :user
+- has_one :record
 
-* System dependencies
+## records テーブル
+| Column    | Type       | Options                        |
+| --------- | ---------- | ------------------------------ |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
-* Configuration
+### association
+- belongs_to :user
+- belongs_to :item
+- has_one :address
 
-* Database creation
+## addresss テーブル
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| postal_code        | string     | null: false                    |
+| area_id            | integer    | null: false                    |
+| municipality       | string     | null: false                    |
+| street_number      | string     | null: false                    |
+| building_name      | string     |                                |
+| telephone_number   | string     | null: false                    |
+| record             | references | null: false, foreign_key: true |
 
-* Database initialization
+### association
+- belongs_to :record
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
