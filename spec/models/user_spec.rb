@@ -22,10 +22,46 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include("Password can't be blank")
       end
+      it '重複したemailが存在する場合登録できない' do
+        @user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = @user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include('Email has already been taken')
+      end
+      it 'emailに@が含まれていないと登録できない' do
+        @user.email = 'sample.gmail.com'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Email is invalid")
+      end
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password_confirmation = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+      it 'passwordが5文字以下では登録できない' do
+        @user.password = 'aaaa9'
+        @user.password_confirmation = 'aaaa9'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
+      end
+      it 'passwordが数字だけでは登録できない' do
+        @user.password = '999999'
+        @user.password_confirmation = '999999'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password doesn't have both letters and numbers")
+      end
+      it 'passwordが英語だけでは登録できない' do
+        @user.password = 'aaaaaa'
+        @user.password_confirmation = 'aaaaaa'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password doesn't have both letters and numbers")
+      end
+      it '全角文字を含むpasswordは登録できない' do
+        @user.password = 'ＡＡＡＡＡＡ'
+        @user.password_confirmation = 'ＡＡＡＡＡＡ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password doesn't have both letters and numbers")
       end
       it 'nicknameが空では登録できない' do
         @user.nickname = ''
@@ -76,37 +112,6 @@ RSpec.describe User, type: :model do
         @user.birthday = ''
         @user.valid?
         expect(@user.errors.full_messages).to include("Birthday can't be blank")
-      end
-      it '重複したemailが存在する場合登録できない' do
-        @user.save
-        another_user = FactoryBot.build(:user)
-        another_user.email = @user.email
-        another_user.valid?
-        expect(another_user.errors.full_messages).to include('Email has already been taken')
-      end
-      it 'passwordが5文字以下では登録できない' do
-        @user.password = 'aaaa9'
-        @user.password_confirmation = 'aaaa9'
-        @user.valid?
-        expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
-      end
-      it 'passwordが数字だけでは登録できない' do
-        @user.password = '999999'
-        @user.password_confirmation = '999999'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password doesn't have both letters and numbers")
-      end
-      it 'passwordが英語だけでは登録できない' do
-        @user.password = 'aaaaaa'
-        @user.password_confirmation = 'aaaaaa'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password doesn't have both letters and numbers")
-      end
-      it '全角文字を含むpasswordは登録できない' do
-        @user.password = 'ＡＡＡＡＡＡ'
-        @user.password_confirmation = 'ＡＡＡＡＡＡ'
-        @user.valid?
-        expect(@user.errors.full_messages).to include("Password doesn't have both letters and numbers")
       end
     end
   end
