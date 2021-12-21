@@ -74,13 +74,13 @@ RSpec.describe User, type: :model do
       @user.password = '999999'
       @user.password_confirmation = '999999'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+      expect(@user.errors.full_messages).to include("Password doesn't have both letters and numbers")
     end
     it 'passwordが英語だけでは登録できない' do
       @user.password = 'aaaaaa'
       @user.password_confirmation = 'aaaaaa'
       @user.valid?
-      expect(@user.errors.full_messages).to include('Password には英字と数字の両方を含めて設定してください')
+      expect(@user.errors.full_messages).to include("Password doesn't have both letters and numbers")
     end
    end
   end
