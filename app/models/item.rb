@@ -3,8 +3,10 @@ class Item < ApplicationRecord
   validates :image
   validates :item_name
   validates :detail
-  validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }
   end
+  validates :price, inclusion: { in: 300..9_999_999 }, format: { with: /\A[0-9]+\z/ }, allow_blank: true
+  validates :price, presence: true
+  
   validates :category_id, numericality: { other_than: 1, message: "can't be blank"}
   validates :condition_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :postage_id, numericality: { other_than: 1, message: "can't be blank" }
