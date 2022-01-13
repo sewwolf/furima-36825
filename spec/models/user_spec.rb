@@ -32,7 +32,7 @@ RSpec.describe User, type: :model do
       it 'emailに@が含まれていないと登録できない' do
         @user.email = 'sample.gmail.com'
         @user.valid?
-        expect(@user.errors.full_messages).to include("Email is invalid")
+        expect(@user.errors.full_messages).to include('Email is invalid')
       end
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password_confirmation = ''
