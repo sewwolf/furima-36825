@@ -1,13 +1,15 @@
 class RecordsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
+  before_action :authenticate_user!, only: :new
+  before_action :find_item, only: [:new, :create]
   attr_accessor :token
   def new
-    @item = Item.find(params[:item_id])
+  unless @item.record == nil && current_user.id != @item.user.id 
+      redirect_to root_path 
+    end
     @record_address = RecordAddress.new
   end
 
   def create
-    @item = Item.find(params[:item_id])
     @record_address = RecordAddress.new(record_params)
     
     if @record_address.valid?
@@ -32,7 +34,10 @@ class RecordsController < ApplicationController
         currency: 'jpy'
     )
   end
-   
+
+  def find_item
+    @item = Item.find(params[:item_id])
+  end
   
 
 end
