@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :postage_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :area_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :delivery_time_id, numericality: { other_than: 1, message: "can't be blank" }
- 
+
   extend ActiveHash::Associations::ActiveRecordExtensions do
     belongs_to :category
     belongs_to :condition
@@ -24,5 +24,4 @@ class Item < ApplicationRecord
   has_one :record, dependent: :destroy
 
   has_one_attached :image
-
 end

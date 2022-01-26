@@ -24,12 +24,12 @@ RSpec.describe RecordAddress, type: :model do
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @record_address.postal_code = '1234567'
         @record_address.valid?
-        expect(@record_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@record_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'postal_codeは全角では保存されない' do
         @record_address.postal_code = '１２３－４５６７'
         @record_address.valid?
-        expect(@record_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@record_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'area_idが1の場合は登録できない' do
         @record_address.area_id = 1
@@ -42,31 +42,31 @@ RSpec.describe RecordAddress, type: :model do
         expect(@record_address.errors.full_messages).to include("Municipality can't be blank")
       end
       it 'street_numberが空だと保存できない' do
-        @record_address.street_number= ''
+        @record_address.street_number = ''
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Street number can't be blank")
       end
       it 'telephone_numberが空だと保存できない' do
         @record_address.telephone_number = ''
         @record_address.valid?
-        expect(@record_address.errors.full_messages).to include("Telephone number is invalid")
+        expect(@record_address.errors.full_messages).to include('Telephone number is invalid')
       end
       it 'telephone_numberが9桁以下だと保存できない' do
         @record_address.telephone_number = '090123456'
         @record_address.valid?
-        expect(@record_address.errors.full_messages).to include("Telephone number is invalid")
+        expect(@record_address.errors.full_messages).to include('Telephone number is invalid')
       end
       it 'telephone_numberが12桁以上だと保存できない' do
         @record_address.telephone_number = '090123456789'
         @record_address.valid?
-        expect(@record_address.errors.full_messages).to include("Telephone number is invalid")
+        expect(@record_address.errors.full_messages).to include('Telephone number is invalid')
       end
       it 'telephone_numberが全角だと保存できない' do
         @record_address.telephone_number = '０９００１２３４５６７'
         @record_address.valid?
-        expect(@record_address.errors.full_messages).to include("Telephone number is invalid")
+        expect(@record_address.errors.full_messages).to include('Telephone number is invalid')
       end
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @record_address.token = nil
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Token can't be blank")
@@ -81,7 +81,6 @@ RSpec.describe RecordAddress, type: :model do
         @record_address.valid?
         expect(@record_address.errors.full_messages).to include("Item can't be blank")
       end
-      
     end
   end
 end

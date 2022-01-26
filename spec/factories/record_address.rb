@@ -6,7 +6,7 @@ FactoryBot.define do
     street_number { '870-1126' }
     building_name { 'あ' }
     telephone_number { '09012345678' }
-    token {"tok_abcdefghijk00000000000000000"}
+    token { 'tok_abcdefghijk00000000000000000' }
     user_id { FactoryBot.create(:user).id }
     item_id { FactoryBot.create(:item).id }
   end
