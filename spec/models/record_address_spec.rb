@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe RecordAddress, type: :model do
   before do
-    @record_address = FactoryBot.build(:record_address)
+    user_id = FactoryBot.create(:user).id 
+    item_id = FactoryBot.create(:item).id 
+    @record_address = FactoryBot.build(:record_address, user_id: user_id, item_id: item_id)
   end
 
   describe '購入履歴・配送先の保存' do

@@ -1,7 +1,7 @@
 class RecordsController < ApplicationController
   before_action :authenticate_user!, only: :new
   before_action :find_item, only: [:new, :create]
-  attr_accessor :token
+  
 
   def new
     redirect_to root_path unless @item.record.nil? && current_user.id != @item.user.id
