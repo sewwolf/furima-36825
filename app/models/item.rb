@@ -21,6 +21,7 @@ class Item < ApplicationRecord
     belongs_to :area
   end
   belongs_to :user
+  has_one :record, dependent: :destroy
 
   has_one_attached :image
 end
