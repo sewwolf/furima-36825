@@ -69,3 +69,6 @@ gem 'faker'
 gem "aws-sdk-s3", require: false
 gem 'rails-i18n'
 gem 'jQuery-Validation-Engine-rails'
+group :production do
+  gem 'unicorn', '5.4.1'
+end
