@@ -16,7 +16,7 @@ class RecordAddress
   validates :telephone_number, presence: true
 
   validates :area_id, numericality: { other_than: 1, message: "を選択してください" }, allow_blank: true
-  validates :token, presence: true
+  validates :token, presence: {message: "を正しく入力してください"}
   def save
     record = Record.create(user_id: user_id, item_id: item_id)
     Address.create(postal_code: postal_code, area_id: area_id, municipality: municipality, street_number: street_number,

@@ -69,8 +69,10 @@
           <span class="indispensable">必須</span>
         </div>
         <%= f.text_field :cvc, class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"4" %>
+        <%= render 'shared/error_messages', model: @record_address, attribute: :token  %>
       </div>
-    </div>
+       </div>
+    
     <%# /カード情報の入力 %>
     
     <%# 配送先の入力 %>
@@ -134,4 +136,5 @@
     <% end %>
   </div>
 </div>
+
 <%= render "shared/second-footer"%>
