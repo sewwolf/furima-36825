@@ -1,5 +1,8 @@
 ja:
   activerecord:
+    models:
+      item:
+      record_address:
     attributes:
       item:
         image: 商品画像
@@ -11,3 +14,13 @@ ja:
         area_id: 配送元の地域
         delivery_time_id: 配送までの日数
         price: 販売価格
+
+  activemodel:
+    attributes:
+      record_address:
+        postal_code: 郵便番号
+        area_id: 都道府県
+        municipality: 市区町村
+        street_number: 番地
+        building_name: 建物名
+        telephone_number: 電話番号
